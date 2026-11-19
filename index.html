@@ -51,24 +51,23 @@
 <div class="drawer-backdrop hidden" id="backdrop"></div><aside class="drawer hidden" id="drawer"><div class="drawer-head"><strong>Minha seleção</strong><button class="btn" id="closeCart">Fechar ×</button></div><div class="drawer-items" id="cartItems"></div><div class="drawer-total"><div style="display:flex;justify-content:space-between;align-items:center"><span>Preço e frete</span><strong>sob consulta</strong></div><p>Sua seleção organiza os produtos de interesse. A disponibilidade, o preço, o frete e o prazo serão confirmados com o fornecedor. Esta etapa ainda não gera pedido nem pagamento.</p><button class="btn primary" style="width:100%" onclick="copySelection()">Copiar lista de interesse</button><p id="copyStatus" class="copy-status" aria-live="polite"></p></div></aside>
 <script>
 const catalog=[
-{id:1,name:"Conjunto básico reforçado",category:"lingerie",price:79,icon:"♡"},
-{id:2,name:"Conjunto rendado",category:"lingerie",price:89,icon:"✧"},
-{id:3,name:"Camisola plus size",category:"lingerie",price:99,icon:"♧"},
-{id:4,name:"Calcinhas plus size",category:"lingerie",price:35,icon:"♡"},
-{id:5,name:"Body plus size",category:"lingerie",price:119,icon:"◇"},
-{id:6,name:"Sutiã reforçado",category:"lingerie",price:79,icon:"✦"},
-{id:7,name:"Massageador bullet",category:"bem-estar",price:89,icon:"✧"},
-{id:8,name:"Plug de silicone",category:"bem-estar",price:49,icon:"◇"},
-{id:9,name:"Lubrificante",category:"bem-estar",price:35,icon:"❋"},
-{id:10,name:"Gel para massagem",category:"bem-estar",price:39,icon:"❋"},
-{id:11,name:"Anel peniano",category:"bem-estar",price:29,icon:"○"},
-{id:12,name:"Bolinhas/contas estimuladoras",category:"bem-estar",price:49,icon:"◌"},
-{id:13,name:"Sleeve masculino",category:"bem-estar",price:69,icon:"◇"},
-{id:14,name:"Mini vibrador",category:"bem-estar",price:119,icon:"✧"},
-{id:15,name:"Acessório de sucção",category:"bem-estar",price:59,icon:"◎"},
-{id:16,name:"Higienizador de acessórios",category:"bem-estar",price:29,icon:"❋"}
+{id:1,name:"Conjunto básico reforçado",category:"lingerie",icon:"♡"},
+{id:2,name:"Conjunto rendado",category:"lingerie",icon:"✧"},
+{id:3,name:"Camisola plus size",category:"lingerie",icon:"♧"},
+{id:4,name:"Calcinhas plus size",category:"lingerie",icon:"♡"},
+{id:5,name:"Body plus size",category:"lingerie",icon:"◇"},
+{id:6,name:"Sutiã reforçado",category:"lingerie",icon:"✦"},
+{id:7,name:"Massageador bullet",category:"bem-estar",icon:"✧"},
+{id:8,name:"Plug de silicone",category:"bem-estar",icon:"◇"},
+{id:9,name:"Lubrificante",category:"bem-estar",icon:"❋"},
+{id:10,name:"Gel para massagem",category:"bem-estar",icon:"❋"},
+{id:11,name:"Anel peniano",category:"bem-estar",icon:"○"},
+{id:12,name:"Bolinhas/contas estimuladoras",category:"bem-estar",icon:"◌"},
+{id:13,name:"Sleeve masculino",category:"bem-estar",icon:"◇"},
+{id:14,name:"Mini vibrador",category:"bem-estar",icon:"✧"},
+{id:15,name:"Acessório de sucção",category:"bem-estar",icon:"◎"},
+{id:16,name:"Higienizador de acessórios",category:"bem-estar",icon:"❋"}
 ];
-const money=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 let filter="todos",cart={},searchTerm="";
 const products=document.getElementById("products");
 function renderProducts(){
