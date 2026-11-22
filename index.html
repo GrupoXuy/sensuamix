@@ -30,13 +30,14 @@
 @media(max-width:520px){.hero-art{min-height:330px}.brand-photo{max-height:340px;width:min(100%,285px)}.model-halo{width:250px;height:250px}.character-caption{right:0;bottom:1%;padding:9px 12px}.character-caption b{font-size:11px}.character-caption span{font-size:9px}.brand-symbol{width:34px;height:34px}.brand-word{font-size:19px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
+<link rel="stylesheet" href="/sensuamix-app.css">
 </head>
 <body>
 <div class="topline"></div><div class="notice">Experiência reservada • Loja destinada exclusivamente a maiores de 18 anos</div>
 <header class="header"><div class="wrap nav">
 <a class="brand" href="#" aria-label="SensuaMix — Bem-estar íntimo para você"><svg class="brand-symbol" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="heartGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9bd0"/><stop offset=".48" stop-color="#ff168d"/><stop offset="1" stop-color="#a90058"/></linearGradient></defs><path d="M50 88C38 73 9 55 9 32 9 10 38 3 50 25 62 3 91 10 91 32 91 55 62 73 50 88Z" fill="none" stroke="url(#heartGlow)" stroke-width="7" stroke-linecap="round"/><path d="M50 25c-6 13-17 17-17 30 0 12 9 22 17 33" fill="none" stroke="#ff74bb" stroke-width="4" stroke-linecap="round"/></svg><span class="brand-word">Sensua<b>Mix</b><small>Bem-estar íntimo para você</small></span></a>
 <nav class="links"><a href="#colecoes">Coleções</a><a href="#produtos">Produtos</a><a href="#entrega">Como funciona</a><a href="#experiencia">Nossa essência</a></nav>
-<div class="nav-actions"><a class="btn" href="#produtos">Explorar</a><button class="btn" id="openCart" aria-label="Abrir lista de interesse">Minha seleção <span class="cart-count" id="cartCount">0</span></button></div>
+<div class="nav-actions"><a class="btn" href="#produtos">Explorar</a><button class="btn" id="accountOpen" type="button">Entrar / Criar conta</button><button class="btn" id="openCart" aria-label="Abrir lista de interesse">Minha seleção <span class="cart-count" id="cartCount">0</span></button></div>
 </div></header>
 <main>
 <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Autocuidado • Confiança • Liberdade</div><h1>Seu bem-estar.<br><em>Do seu jeito.</em></h1><p>Um espaço para celebrar sua intimidade com leveza, confiança e liberdade. Descubra lingerie plus size e produtos de bem-estar íntimo em uma experiência acolhedora, reservada e atendida por parceiros com pronta entrega.</p><div class="hero-cta"><a class="btn primary" href="#colecoes">Descobrir coleções&nbsp; ↗</a><a class="btn" href="#experiencia">Conheça a SensuaMix</a></div><p class="hero-note">Discrição em cada etapa. Respeito em cada escolha.</p></div><div class="hero-art"><div class="model-halo"></div><img class="brand-photo" src="/images/sensuamix-character.webp" alt="Apresentadora da SensuaMix" width="320" height="480" loading="eager" decoding="async" fetchpriority="high"><div class="character-caption"><b>Bem-vinda à SensuaMix</b><span>Seu momento. Seu cuidado. Seu jeito.</span></div></div></div></section>
@@ -97,5 +98,7 @@ document.getElementById("openCart").onclick=openCart;document.getElementById("cl
 document.getElementById("enter").onclick=()=>{sessionStorage.setItem("sensuamix-adult-confirmed","yes");document.getElementById("ageGate").classList.add("hidden")};
 document.getElementById("leave").onclick=()=>{document.querySelector("#ageGate .modal").innerHTML="<h2>Acesso não permitido</h2><p>Esta loja é destinada exclusivamente a maiores de 18 anos.</p>"};
 if(sessionStorage.getItem("sensuamix-adult-confirmed")==="yes")document.getElementById("ageGate").classList.add("hidden");
-renderProducts();renderCart();const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");revealObserver.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
-</script></body></html>
+window.catalog=catalog;window.renderProducts=renderProducts;renderProducts();renderCart();const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");revealObserver.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+</script><script src="/runtime-config.js"></script>
+<script type="module" src="/sensuamix-app.js"></script>
+</body></html>
