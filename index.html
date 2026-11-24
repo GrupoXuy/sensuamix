@@ -21,7 +21,7 @@
 .brand{gap:12px}.brand-symbol{width:43px;height:43px;flex:none;filter:drop-shadow(0 0 8px #ed168655)}.brand-word{font-size:23px;line-height:1;font-weight:800;letter-spacing:-.055em}.brand-word b{color:var(--pink2)}.brand-word small{display:block;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#e8dce4;font-weight:500;margin-top:4px}
 .hero{background:radial-gradient(ellipse at 76% 36%,#7b164a66,transparent 45%),radial-gradient(ellipse at 20% 80%,#45102d55,transparent 40%)}
 .hero-art{min-height:490px;display:flex;align-items:end;justify-content:center;position:relative}.model-halo{position:absolute;width:380px;height:380px;top:7%;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#f42b9550 0%,#9a165133 42%,transparent 72%);filter:blur(5px)}
-.brand-photo{position:relative;z-index:1;display:block;flex:0 0 auto;width:min(100%,390px);height:auto;max-height:490px;aspect-ratio:2/3;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 14px 30px #e9168640);animation:suhWelcome 1.8s cubic-bezier(.22,.75,.25,1) both,suhBreath 6s ease-in-out 1.8s infinite;transform-origin:50% 82%;will-change:transform,opacity;backface-visibility:hidden}@keyframes suhWelcome{0%{opacity:0;transform:translateY(22px) scale(.97)}65%{opacity:1;transform:translateY(-3px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1)}}@keyframes suhBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}@media(prefers-reduced-motion:reduce){.brand-photo{animation:none;opacity:1;transform:none}}
+.brand-photo{position:relative;z-index:1;display:block;flex:0 0 auto;width:min(100%,390px);height:auto;max-height:490px;aspect-ratio:2/3;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 14px 30px #e9168640);animation:none;transform:none;backface-visibility:hidden}@keyframes suhWelcome{0%{opacity:0;transform:translateY(22px) scale(.97)}65%{opacity:1;transform:translateY(-3px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1)}}@keyframes suhBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}@media(prefers-reduced-motion:reduce){.brand-photo{animation:none;opacity:1;transform:none}}
 .character-caption{position:absolute;z-index:2;bottom:7%;right:0;background:#130b13e8;border:1px solid #9b3d6b;border-radius:15px;padding:13px 17px;backdrop-filter:blur(12px);box-shadow:0 12px 35px #0008}.character-caption b,.character-caption span{display:block}.character-caption b{font-size:13px}.character-caption span{font-size:10px;color:#d8b7c9;margin-top:4px}
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.is-visible{opacity:1;transform:translateY(0)}
 .category,.product,.promise-item{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}.category:hover,.product:hover{box-shadow:0 18px 45px #ed16861c}
@@ -124,38 +124,106 @@ document.addEventListener("DOMContentLoaded", () => { if (window.location.pathna
 (() => {
   const video = document.getElementById("suh-entrance");
   const finalImage = document.getElementById("suh-final");
-  if (!video || !finalImage) return;
-  const showFinal = () => {
+  const hero = document.querySelector(".hero");
+  if (!video || !finalImage || !hero) return;
+
+  const path = window.location.pathname.replace(/\\/+$/, "") || "/";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if ((path !== "/" && path !== "/index.html") || reducedMotion.matches) {
     video.pause();
     video.hidden = true;
     finalImage.hidden = false;
-  };
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const key = "sensuamix-suh-intro-played-v1";
-  let alreadyPlayed = false;
-  try { alreadyPlayed = sessionStorage.getItem(key) === "yes"; } catch (_) {}
-  if ((path !== "/" && path !== "/index.html") || reducedMotion.matches || alreadyPlayed) {
-    showFinal();
     return;
   }
-  const startOnce = () => {
-    if (video.dataset.started === "yes") return;
-    video.dataset.started = "yes";
-    try { sessionStorage.setItem(key, "yes"); } catch (_) {}
-    video.addEventListener("ended", showFinal, { once: true });
-    video.addEventListener("error", showFinal, { once: true });
-    reducedMotion.addEventListener?.("change", event => { if (event.matches) showFinal(); }, { once: true });
-    const playback = video.play();
-    if (playback && typeof playback.catch === "function") playback.catch(showFinal);
+
+  let enabled = false;
+  let maxScrollY = 0;
+  let resetPending = false;
+  let frameRequested = false;
+  const scrollRange = () => Math.max(360, hero.offsetHeight * 0.78);
+
+  const renderScrollFrame = () => {
+    frameRequested = false;
+    if (!enabled || video.hidden || video.readyState < 1 || !Number.isFinite(video.duration)) return;
+    const progress = Math.min(1, Math.max(0, maxScrollY / scrollRange()));
+    const targetTime = Math.min(Math.max(0, video.duration - 0.04), progress * Math.max(0, video.duration - 0.04));
+    if (Math.abs(video.currentTime - targetTime) > 0.035) {
+      video.currentTime = targetTime;
+    }
+    video.pause();
   };
+
+  const requestFrame = () => {
+    if (frameRequested) return;
+    frameRequested = true;
+    window.requestAnimationFrame(renderScrollFrame);
+  };
+
+  const onScroll = () => {
+    if (!enabled) return;
+    const currentY = Math.max(0, window.scrollY || window.pageYOffset || 0);
+    if (resetPending) {
+      if (currentY > 2) return;
+      resetPending = false;
+      maxScrollY = 0;
+      requestFrame();
+      return;
+    }
+    // A animação só avança: voltar para cima não rebobina nem reinicia a Suh.
+    if (currentY > maxScrollY) {
+      maxScrollY = currentY;
+      requestFrame();
+    }
+  };
+
+  const enableScrollAnimation = () => {
+    if (enabled) return;
+    enabled = true;
+    video.pause();
+    video.hidden = false;
+    finalImage.hidden = true;
+    maxScrollY = 0;
+    if (video.readyState >= 1) video.currentTime = 0;
+    else video.addEventListener("loadedmetadata", () => { if (enabled) video.currentTime = 0; }, { once: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", requestFrame, { passive: true });
+  };
+
+  const resetFromHomeMenu = () => {
+    if (!enabled) return;
+    maxScrollY = 0;
+    resetPending = window.scrollY > 2;
+    video.pause();
+    video.hidden = false;
+    finalImage.hidden = true;
+    if (video.readyState >= 1) video.currentTime = 0;
+    if (!resetPending) requestFrame();
+  };
+
+  video.addEventListener("loadedmetadata", () => {
+    video.pause();
+    if (enabled) requestFrame();
+  });
+  video.addEventListener("error", () => {
+    video.pause();
+    video.hidden = true;
+    finalImage.hidden = false;
+    enabled = false;
+  });
+
   const ageGate = document.getElementById("ageGate");
   const enterButton = document.getElementById("enter");
-  if (ageGate && !ageGate.classList.contains("hidden") && enterButton) {
-    enterButton.addEventListener("click", startOnce, { once: true });
-  } else {
-    startOnce();
+  let ageConfirmed = false;
+  try { ageConfirmed = sessionStorage.getItem("sensuamix-adult-confirmed") === "yes"; } catch (_) {}
+  if (ageConfirmed || !ageGate || ageGate.classList.contains("hidden")) {
+    enableScrollAnimation();
+  } else if (enterButton) {
+    enterButton.addEventListener("click", enableScrollAnimation, { once: true });
   }
+
+  document.querySelectorAll("a.brand[href='#']").forEach(link => {
+    link.addEventListener("click", resetFromHomeMenu);
+  });
 })();
 </script>
 </body></html>
