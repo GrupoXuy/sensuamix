@@ -104,8 +104,8 @@ window.catalog=catalog;window.renderProducts=renderProducts;renderProducts();ren
 
 <!-- SensuaMix dedicated admin route -->
 <script>
-(() => {
-  const isAdminRoute = window.location.pathname.replace(/\\/+$/, "") === "/admin";
+document.addEventListener("DOMContentLoaded", () => {
+  const isAdminRoute = window.location.pathname.replace(/\/+$/, "") === "/admin";
   if (!isAdminRoute) return;
   document.documentElement.dataset.sensuamixRoute = "admin";
   document.title = "Administração | SensuaMix";
@@ -123,7 +123,7 @@ window.catalog=catalog;window.renderProducts=renderProducts;renderProducts();ren
   } else if (enter) {
     enter.addEventListener("click", openAdminLogin, { once: true });
   }
-})();
+});
 </script>
 
 </body></html>
