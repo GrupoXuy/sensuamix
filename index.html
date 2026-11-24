@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<script>if(window.location.pathname.replace(/\\/+$/, "") === "/admin")document.documentElement.dataset.sensuamixRoute="admin";</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#09070a">
 <meta name="description" content="SensuaMix — lingerie plus size e bem-estar íntimo, com atendimento reservado em Paulista, PE.">
@@ -33,6 +32,13 @@
 html[data-sensuamix-route="admin"] #ageGate,html[data-sensuamix-route="conta"] #ageGate{display:none!important}
 </style>
 <link rel="stylesheet" href="/sensuamix-app.css">
+<style>
+/* Suh: one-time entrance, then a stable front-facing final portrait. */
+.brand-photo{display:block;position:relative;z-index:1;width:min(100%,438px);height:auto;max-height:490px;aspect-ratio:438/390;object-fit:contain;object-position:center;filter:drop-shadow(0 14px 30px #e9168640);animation:none!important;transform:none!important;opacity:1;will-change:auto;backface-visibility:hidden}
+.brand-photo[hidden]{display:none!important}
+@media(max-width:850px){.brand-photo{width:min(100%,330px);max-height:390px}}
+@media(prefers-reduced-motion:reduce){.brand-photo{animation:none!important;transform:none!important}}
+</style>
 </head>
 <body>
 <div class="topline"></div><div class="notice">Experiência reservada • Paulista, PE • Exclusivo para maiores de 18 anos</div>
@@ -42,7 +48,7 @@ html[data-sensuamix-route="admin"] #ageGate,html[data-sensuamix-route="conta"] #
 <div class="nav-actions"><a class="btn" href="#produtos">Explorar</a><button class="btn" id="accountOpen" type="button">Entrar / Criar conta</button><button class="btn" id="openCart" aria-label="Abrir carrinho">Meu carrinho <span class="cart-count" id="cartCount">0</span></button></div>
 </div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Autocuidado • Confiança • Liberdade</div><h1>Seu bem-estar.<br><em>Do seu jeito.</em></h1><p>Um espaço para celebrar sua intimidade com leveza, confiança e liberdade. Descubra lingerie plus size e produtos de bem-estar íntimo em uma experiência acolhedora, reservada e feita para você.</p><div class="hero-cta"><a class="btn primary" href="#colecoes">Descobrir coleções&nbsp; ↗</a><a class="btn" href="#experiencia">Conheça a SensuaMix</a></div><p class="hero-note">Discrição em cada etapa. Respeito em cada escolha.</p></div><div class="hero-art"><div class="model-halo"></div><img class="brand-photo" src="/images/sensuamix-character.webp" alt="Apresentadora da SensuaMix" width="320" height="480" loading="eager" decoding="async" fetchpriority="high"><div class="character-caption"><b>Suh · Assistente virtual</b><span>Seja bem-vinda! Vem que eu te mostro o caminho.</span></div></div></div></section>
+<section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Autocuidado • Confiança • Liberdade</div><h1>Seu bem-estar.<br><em>Do seu jeito.</em></h1><p>Um espaço para celebrar sua intimidade com leveza, confiança e liberdade. Descubra lingerie plus size e produtos de bem-estar íntimo em uma experiência acolhedora, reservada e feita para você.</p><div class="hero-cta"><a class="btn primary" href="#colecoes">Descobrir coleções&nbsp; ↗</a><a class="btn" href="#experiencia">Conheça a SensuaMix</a></div><p class="hero-note">Discrição em cada etapa. Respeito em cada escolha.</p></div><div class="hero-art"><div class="model-halo"></div><video id="suh-entrance" class="brand-photo" muted playsinline preload="metadata" poster="/images/suh-final.png" width="438" height="390" aria-label="Suh, assistente virtual da SensuaMix"><source src="/videos/suh-entrance.webm" type="video/webm"><source src="/videos/suh-entrance.mp4" type="video/mp4"></video><img id="suh-final" class="brand-photo" src="/images/suh-final.png" alt="Suh, assistente virtual da SensuaMix" width="438" height="389" loading="eager" decoding="async" hidden><div class="character-caption"><b>Suh · Assistente virtual</b><span>Seja bem-vinda! Vem que eu te mostro o caminho.</span></div></div></div></section>
 <div class="trust"><div class="wrap trust-row"><div class="trust-item"><span>✦</span> Atendimento acolhedor e reservado</div><div class="trust-item"><span>♡</span> Beleza, conforto e autoestima</div><div class="trust-item"><span>◇</span> Paulista, PE</div></div></div>
 <section class="section reveal" id="colecoes"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Escolha sua experiência</div><h2>Duas formas de se sentir bem.</h2></div><p>Curadoria pensada para diferentes corpos, desejos e momentos. Explore com tranquilidade.</p></div><div class="categories"><article class="category"><div class="cat-icon">♡</div><h3>Lingerie Plus Size</h3><p>Peças que valorizam suas curvas, respeitam seu conforto e celebram sua beleza.</p><button class="btn" data-filter="lingerie">Ver lingerie ↗</button></article><article class="category"><div class="cat-icon">✧</div><h3>Bem-estar Íntimo</h3><p>Produtos para autocuidado, descoberta e conexão, com informação e discrição.</p><button class="btn" data-filter="bem-estar">Explorar produtos ↗</button></article></div></div></section>
 <section class="section reveal" id="produtos" style="padding-top:20px"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Seleção inicial</div><h2>Conheça nosso catálogo.</h2></div><p>Encontre seus produtos favoritos e consulte as informações de cada item. Antes de concluir sua compra, confira valores, disponibilidade, opções de entrega e embalagem discreta. Paulista, PE.</p></div><div class="catalog-search"><label for="catalogSearch">Encontre um produto</label><input id="catalogSearch" type="search" placeholder="Digite o nome do produto" autocomplete="off"></div><div class="filters"><button class="filter active" data-filter="todos">Todos</button><button class="filter" data-filter="lingerie">Lingerie Plus Size</button><button class="filter" data-filter="bem-estar">Bem-estar Íntimo</button></div><div class="products" id="products" aria-live="polite"></div><p class="catalog-disclaimer">Consulte disponibilidade, valores e condições de entrega antes de finalizar sua compra.</p></div></section>
@@ -114,4 +120,42 @@ window.catalog=catalog;window.renderProducts=renderProducts;renderProducts();ren
 document.addEventListener("DOMContentLoaded", () => { if (window.location.pathname.replace(/\/+$/, "") === "/admin") { document.documentElement.dataset.sensuamixRoute = "admin"; document.title = "Painel administrativo | SensuaMix"; } });
 </script>
 
+<script>
+(() => {
+  const video = document.getElementById("suh-entrance");
+  const finalImage = document.getElementById("suh-final");
+  if (!video || !finalImage) return;
+  const showFinal = () => {
+    video.pause();
+    video.hidden = true;
+    finalImage.hidden = false;
+  };
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const key = "sensuamix-suh-intro-played-v1";
+  let alreadyPlayed = false;
+  try { alreadyPlayed = sessionStorage.getItem(key) === "yes"; } catch (_) {}
+  if ((path !== "/" && path !== "/index.html") || reducedMotion.matches || alreadyPlayed) {
+    showFinal();
+    return;
+  }
+  const startOnce = () => {
+    if (video.dataset.started === "yes") return;
+    video.dataset.started = "yes";
+    try { sessionStorage.setItem(key, "yes"); } catch (_) {}
+    video.addEventListener("ended", showFinal, { once: true });
+    video.addEventListener("error", showFinal, { once: true });
+    reducedMotion.addEventListener?.("change", event => { if (event.matches) showFinal(); }, { once: true });
+    const playback = video.play();
+    if (playback && typeof playback.catch === "function") playback.catch(showFinal);
+  };
+  const ageGate = document.getElementById("ageGate");
+  const enterButton = document.getElementById("enter");
+  if (ageGate && !ageGate.classList.contains("hidden") && enterButton) {
+    enterButton.addEventListener("click", startOnce, { once: true });
+  } else {
+    startOnce();
+  }
+})();
+</script>
 </body></html>
