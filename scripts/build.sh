@@ -4,9 +4,11 @@ set -eu
 : "${SUPABASE_URL:?Missing SUPABASE_URL environment variable}"
 : "${SUPABASE_PUBLISHABLE_KEY:?Missing SUPABASE_PUBLISHABLE_KEY environment variable}"
 
-mkdir -p public/admin
+mkdir -p public/admin public/conta
 cp index.html public/index.html
 cp index.html public/admin/index.html
+cp index.html public/conta/index.html
+cp sensuamix-customer.js public/sensuamix-customer.js
 cp sensuamix-admin.js public/sensuamix-admin.js
 gzip -dc build/sensuamix-app.js.gz > public/sensuamix-app.js
 gzip -dc build/sensuamix-app.css.gz > public/sensuamix-app.css
