@@ -1,0 +1,8 @@
+Suh candidate entrance media
+Archive SHA256: 31419d587f01f0dd53b0cbe7a07cb800725d9c64a84164591af732f964d6ca9c
+MP4: H.264/AVC, 438x390, 12 fps, 3.67 sec, 44 frames, single playback
+WebM: VP9, 438x390, 12 fps, 3.67 sec, single playback
+GIF: 438x389, 8 useful frames, no loop
+Final PNG: 438x389
+No audio track; poster/final image share one file.
+Source limitation: no finger-beckoning gesture and no continuous full-turn geometry; current clip is a one-time pose transition, not a fully animated greeting gesture.
