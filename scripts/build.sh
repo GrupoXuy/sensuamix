@@ -4,6 +4,10 @@ set -eu
 : "${SUPABASE_URL:?Missing SUPABASE_URL environment variable}"
 : "${SUPABASE_PUBLISHABLE_KEY:?Missing SUPABASE_PUBLISHABLE_KEY environment variable}"
 
+# Fail the preview build on syntax errors in the interactive account panels.
+node --check --input-type=module < sensuamix-admin.js
+node --check --input-type=module < sensuamix-customer.js
+
 mkdir -p public/admin public/conta
 cp index.html public/index.html
 cp index.html public/admin/index.html
