@@ -7,6 +7,7 @@ set -eu
 mkdir -p public/admin
 cp index.html public/index.html
 cp index.html public/admin/index.html
+cp sensuamix-admin.js public/sensuamix-admin.js
 gzip -dc build/sensuamix-app.js.gz > public/sensuamix-app.js
 gzip -dc build/sensuamix-app.css.gz > public/sensuamix-app.css
 
