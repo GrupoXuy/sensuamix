@@ -1,4 +1,4 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.119.2';
 const isAdmin=location.pathname.replace(/\/+$/,'')==='/admin'; if(!isAdmin) throw new Error('not admin route');
 const root=document.createElement('div');root.id='sensuamix-admin-root';document.body.innerHTML='';document.body.append(root);document.title='Painel administrativo | SensuaMix';
 const c=window.SENSUAMIX_CONFIG||{};const sb=createClient(c.supabaseUrl,c.publishableKey,{auth:{persistSession:true,autoRefreshToken:true}});
