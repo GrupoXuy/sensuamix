@@ -11,7 +11,7 @@ MEDIA_ARCHIVE="$(mktemp)"
 trap 'rm -f "$MEDIA_ARCHIVE"' EXIT
 
 curl --fail --silent --show-error --location --retry 3 --connect-timeout 10 --max-time 90 "$MEDIA_ARCHIVE_URL" -o "$MEDIA_ARCHIVE"
-printf '%s  %s\\n' "$MEDIA_ARCHIVE_SHA256" "$MEDIA_ARCHIVE" | sha256sum --check --status
+printf '%s  %s\n' "$MEDIA_ARCHIVE_SHA256" "$MEDIA_ARCHIVE" | sha256sum --check --status
 
 # Guard the build against script and configuration regressions.
 node --check --input-type=module < sensuamix-admin.js
@@ -40,9 +40,9 @@ test -s public/images/suh-final.png
 
 cat > public/runtime-config.js <<EOF
 window.SENSUAMIX_CONFIG = Object.freeze({
-  supabaseUrl: "${D}{SUPABASE_URL}",
-  publishableKey: "${D}{SUPABASE_PUBLISHABLE_KEY}"
+  supabaseUrl: "${SUPABASE_URL}",
+  publishableKey: "${SUPABASE_PUBLISHABLE_KEY}"
 });
 EOF
 
-printf 'SensuaMix build passed; Suh media archive checksum verified.\\n'
+printf 'SensuaMix build passed; Suh media archive checksum verified.\n'
