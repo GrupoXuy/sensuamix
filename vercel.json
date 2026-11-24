@@ -8,6 +8,14 @@
     {
       "source": "/admin/:path*",
       "destination": "/index.html"
+    },
+    {
+      "source": "/conta",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/conta/:path*",
+      "destination": "/index.html"
     }
   ]
 }
