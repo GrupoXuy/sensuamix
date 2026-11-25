@@ -77,8 +77,8 @@ img,video{max-width:100%}
 </style>
 
 <style>
-/* Suh: suaviza o halo escuro da mídia e integra melhor a personagem ao fundo da página. */
-.hero-art{isolation:isolate}
+/* Suh: mantém a mídia em composição com o fundo real da página; isolamento criava um retângulo preto ao redor do vídeo. */
+.hero-art{isolation:auto!important}
 .hero-art::before{content:"";position:absolute;z-index:0;inset:4% 8% 2%;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(237,22,134,.18) 0%,rgba(125,20,72,.12) 42%,transparent 72%);filter:blur(22px)}
 .brand-photo{background:transparent!important;mix-blend-mode:screen!important;filter:brightness(1.18) contrast(1.05) drop-shadow(0 14px 30px #e9168640)!important}
 </style>
