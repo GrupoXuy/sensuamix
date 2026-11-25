@@ -30,6 +30,42 @@
 @media(max-width:520px){.hero-art{min-height:330px}.brand-photo{max-height:340px;width:min(100%,285px)}.model-halo{width:250px;height:250px}.character-caption{right:0;bottom:1%;padding:9px 12px}.character-caption b{font-size:11px}.character-caption span{font-size:9px}.brand-symbol{width:34px;height:34px}.brand-word{font-size:19px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 html[data-sensuamix-route="admin"] #ageGate,html[data-sensuamix-route="conta"] #ageGate{display:none!important}
+
+/* Mobile layout hardening: avoid clipped navigation and horizontal page overflow. */
+@media(max-width:850px){
+  html,body{max-width:100%;overflow-x:hidden}
+  .nav{gap:14px;flex-wrap:wrap;height:auto;min-height:66px;padding:12px 0}
+  .nav-actions{flex-wrap:wrap;justify-content:flex-end;gap:7px;min-width:0}
+  .nav-actions .btn{white-space:normal;max-width:100%}
+  .hero-grid>*,
+  .section-head>*,
+  .promise-grid>*{min-width:0}
+  .section-head{gap:18px;align-items:flex-start}
+  .hero-cta{flex-wrap:wrap}
+  .hero-cta .btn{max-width:100%}
+  .products,.categories,.fulfillment-grid,.footer-grid{min-width:0}
+  .product,.category,.fulfillment-card{min-width:0}
+}
+@media(max-width:520px){
+  .nav{align-items:flex-start}
+  .brand{max-width:100%;font-size:20px}
+  .brand-word{min-width:0}
+  .nav-actions{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .nav-actions .btn{min-width:0;width:100%;padding:9px 5px;font-size:10px;line-height:1.25;border-radius:13px}
+  .cart-count{width:17px;height:17px;font-size:9px;margin-left:2px}
+  .hero-cta .btn{flex:1 1 100%;justify-content:center;text-align:center}
+  .section-head{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+  .section-head h2{overflow-wrap:anywhere}
+  .catalog-search{width:100%;max-width:100%}
+  .filters{gap:7px}
+  .filter{padding:9px 11px}
+  .drawer{width:100%;max-width:100vw;padding:16px}
+  .modal{padding:22px 16px}
+  .modal-actions{flex-direction:column}
+  .footer-bottom{overflow-wrap:anywhere}
+}
+img,video{max-width:100%}
+
 </style>
 <link rel="stylesheet" href="/sensuamix-app.css">
 <style>
