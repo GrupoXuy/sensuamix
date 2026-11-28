@@ -116,14 +116,14 @@ async function loadStoreProducts(){const cfg=window.SENSUAMIX_CONFIG||{};if(!cfg
 function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart()}
 function renderCart(){
  const entries=Object.entries(cart);
- document.getElementById("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{const p=catalog.find(x=>String(x.id)===String(id));return '<div class="cart-line"><div><strong>'+p.name+'</strong><small>Disponibilidade e preço sob consulta</small></div><div class="qty"><button aria-label="Diminuir quantidade" onclick="changeQty('+id+',-1)">−</button><b>'+q+'</b><button aria-label="Aumentar quantidade" onclick="changeQty('+id+',1)">+</button></div></div>'}).join(""):'<p style="color:#a997a3;font-size:13px">Sua seleção está vazia.</p>';
+ document.getElementById("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{const p=catalog.find(x=>String(x.id)===String(id));return '<div class="cart-line"><div><strong>'+p.name+'</strong><small>Disponibilidade e preço sob consulta</small></div><div class="qty"><button aria-label="Diminuir quantidade" onclick="changeQty(&quot;'+id+'&quot;,-1)">−</button><b>'+q+'</b><button aria-label="Aumentar quantidade" onclick="changeQty(&quot;'+id+'&quot;,1)">+</button></div></div>'}).join(""):'<p style="color:#a997a3;font-size:13px">Sua seleção está vazia.</p>';
  document.getElementById("cartCount").textContent=entries.reduce((sum,[,q])=>sum+q,0);
 }
 function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];renderCart()}
 function copySelection(){
  const entries=Object.entries(cart),status=document.getElementById("copyStatus");
  if(!entries.length){status.textContent="Adicione produtos à sua seleção primeiro.";return;}
- const lines=entries.map(([id,q])=>{const p=catalog.find(x=>x.id===+id);return "- "+p.name+" — quantidade: "+q;});
+ const lines=entries.map(([id,q])=>{const p=catalog.find(x=>String(x.id)===String(id));return "- "+p.name+" — quantidade: "+q;});
  const message="Olá! Tenho interesse nestes produtos da SensuaMix:\n"+lines.join("\n")+"\nGostaria de saber os valores, a disponibilidade e as opções de entrega.";
  const fallback=()=>{const field=document.createElement("textarea");field.value=message;document.body.appendChild(field);field.select();try{document.execCommand("copy");status.textContent="Lista copiada. Envie ao atendimento oficial quando estiver disponível.";}catch(e){status.textContent="Cópia automática indisponível. Selecione e copie a lista manualmente.";}field.remove();};
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(message).then(()=>status.textContent="Lista copiada. Envie ao atendimento oficial quando estiver disponível.").catch(fallback);}else fallback();
