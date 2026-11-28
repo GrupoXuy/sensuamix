@@ -20,7 +20,7 @@
 @media(max-width:520px){.fulfillment-grid{grid-template-columns:1fr}.wrap{width:calc(100% - 28px)}.nav{height:66px}.brand{font-size:21px}.nav-actions .btn{padding:9px 12px;font-size:11px}.hero h1{font-size:48px}.hero-art{min-height:285px}.orb{width:245px}.float-a{left:-3px;top:4%}.float-b{right:-3px;bottom:4%}.floating{padding:10px 12px;font-size:10px}.trust-row{grid-template-columns:1fr;gap:12px}.trust-item{justify-content:flex-start}.section{padding:60px 0}.categories{grid-template-columns:1fr}.category{min-height:220px}.products{gap:10px}.product-visual{height:145px}.product-symbol{width:78px;height:78px;font-size:29px}.product-info{padding:12px}.product-info h3{font-size:13px}.price{font-size:17px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}}
 .brand{gap:12px}.brand-symbol{width:43px;height:43px;flex:none;filter:drop-shadow(0 0 8px #ed168655)}.brand-word{font-size:23px;line-height:1;font-weight:800;letter-spacing:-.055em}.brand-word b{color:var(--pink2)}.brand-word small{display:block;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#e8dce4;font-weight:500;margin-top:4px}
 .hero{background:radial-gradient(ellipse at 76% 36%,#7b164a66,transparent 45%),radial-gradient(ellipse at 20% 80%,#45102d55,transparent 40%)}
-.hero-art{min-height:490px;display:flex;align-items:end;justify-content:center;position:relative}.model-halo{position:absolute;width:380px;height:380px;top:7%;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#f42b9550 0%,#9a165133 42%,transparent 72%);filter:blur(5px)}
+.hero-art{min-height:550px;display:flex;align-items:end;justify-content:center;position:relative}.model-halo{position:absolute;width:430px;height:430px;top:7%;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#f42b9550 0%,#9a165133 42%,transparent 72%);filter:blur(5px)}
 .brand-photo{position:relative;z-index:1;display:block;flex:0 0 auto;width:min(100%,390px);height:auto;max-height:490px;aspect-ratio:2/3;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 14px 30px #e9168640);mix-blend-mode:screen;animation:none;transform:none;backface-visibility:hidden}@keyframes suhWelcome{0%{opacity:0;transform:translateY(22px) scale(.97)}65%{opacity:1;transform:translateY(-3px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1)}}@keyframes suhBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}@media(prefers-reduced-motion:reduce){.brand-photo{animation:none;opacity:1;transform:none}}
 .character-caption{position:absolute;z-index:2;bottom:7%;right:0;background:#130b13e8;border:1px solid #9b3d6b;border-radius:15px;padding:13px 17px;backdrop-filter:blur(12px);box-shadow:0 12px 35px #0008}.character-caption b,.character-caption span{display:block}.character-caption b{font-size:13px}.character-caption span{font-size:10px;color:#d8b7c9;margin-top:4px}
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.is-visible{opacity:1;transform:translateY(0)}
@@ -70,9 +70,9 @@ img,video{max-width:100%}
 <link rel="stylesheet" href="/sensuamix-app.css">
 <style>
 /* Suh: one-time entrance, then a stable front-facing final portrait. */
-.brand-photo{display:block;position:relative;z-index:1;width:min(100%,438px);height:auto;max-height:490px;aspect-ratio:438/390;object-fit:contain;object-position:center;filter:drop-shadow(0 14px 30px #e9168640);mix-blend-mode:screen;animation:none!important;transform:none!important;opacity:1;will-change:auto;backface-visibility:hidden}
+.brand-photo{display:block;position:relative;z-index:1;width:min(100%,505px);height:auto;max-height:560px;aspect-ratio:438/390;object-fit:contain;object-position:center;filter:drop-shadow(0 14px 30px #e9168640);mix-blend-mode:lighten;animation:none!important;transform:none!important;opacity:1;will-change:auto}
 .brand-photo[hidden]{display:none!important}
-@media(max-width:850px){.brand-photo{width:min(100%,330px);max-height:390px}}
+@media(max-width:850px){.brand-photo{width:min(100%,370px);max-height:450px}.hero-art{min-height:450px}.model-halo{width:350px;height:350px}}@media(max-width:520px){.brand-photo{width:min(100%,360px);max-height:420px}.hero-art{min-height:390px}.model-halo{width:300px;height:300px}}
 @media(prefers-reduced-motion:reduce){.brand-photo{animation:none!important;transform:none!important}}
 </style>
 
@@ -80,7 +80,7 @@ img,video{max-width:100%}
 /* Suh: mantém a mídia em composição com o fundo real da página; isolamento criava um retângulo preto ao redor do vídeo. */
 .hero-art{isolation:auto!important}
 .hero-art::before{content:"";position:absolute;z-index:0;inset:4% 8% 2%;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(237,22,134,.18) 0%,rgba(125,20,72,.12) 42%,transparent 72%);filter:blur(22px)}
-.brand-photo{background:transparent!important;mix-blend-mode:screen!important;filter:brightness(1.18) contrast(1.05) drop-shadow(0 14px 30px #e9168640)!important}
+.brand-photo{background:transparent!important;mix-blend-mode:lighten!important;filter:brightness(1.08) contrast(1.18) drop-shadow(0 14px 30px #e9168640)!important}
 </style>
 
 </head>
